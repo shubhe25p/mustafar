@@ -6,7 +6,8 @@ from stability_sdk import client
 import cv2
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 stability_api = client.StabilityInference(
-    key='sk-vSTOSKxpVYvN54rEO8fGo4XXHiflxdedpipngg9dL8sqGznq', 
+    key='
+    ', 
     verbose=True,
 )
 answers = stability_api.generate(
