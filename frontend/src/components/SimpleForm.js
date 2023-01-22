@@ -17,7 +17,7 @@ export default function SimpleForm() {
       console.log(data.get("planet"));
       UserService.sendData(data.get("city"), data.get("planet")).then(
         () => {
-          console.log(data);
+          console.log("hello world");
         },
         error => {
           const resMessage =

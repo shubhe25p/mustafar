@@ -1,7 +1,11 @@
 import axios from "axios";
 class UserService{
     sendData(city, planet){
-        return axios.post(process.env.REACT_APP_BASE_URL + {city, planet}).then(response => {
+        const data = {
+            city: city,
+            planet: planet
+        }
+        return axios.post(process.env.REACT_APP_BASE_URL, data).then(response => {
             return response.data;
         })
     }
