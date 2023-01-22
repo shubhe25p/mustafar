@@ -9,25 +9,31 @@ import UserService from "../services/user.service";
 
 
 export default function SimpleForm() {
+    const [image, setImage] = React.useState(null);
 
     const handleSubmit = (event) => {
       event.preventDefault();
       const data = new FormData(event.currentTarget);
       console.log(data.get("city"));
       console.log(data.get("planet"));
-      UserService.sendData(data.get("city"), data.get("planet")).then(
-        () => {
-          console.log("hello world");
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      UserService.sendData(data.get("city"), data.get("planet"))
+    .then(
+      response => {
+        console.log(response)
+        const blob = new Blob([response], {type: 'image/jpeg'});
+        console.log(blob);
+        var reader = new FileReader();
+        reader.readAsDataURL(blob); 
+        reader.onloadend = function() {
+          var base64data = reader.result;                
+        setImage(base64data)
+          console.log(base64data);
         }
-      );
+        }
+    )
+      .catch(error => {
+        console.log(error);
+    });
     };
     
     return (
@@ -72,6 +78,7 @@ export default function SimpleForm() {
         </Button>
         
       </Box>
+      {image && <img src={image} alt="Response" />}
     </Box>
     );
 }

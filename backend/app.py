@@ -4,6 +4,7 @@ import warnings
 from PIL import Image
 from stability_sdk import client
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
+from random import randint
 
 
 def generate_img(city, planet):
@@ -14,6 +15,8 @@ def generate_img(city, planet):
     )
     answers = stability_api.generate(
         prompt=manipulate_prompt(city,planet),
+        seed=randint(1,100), # if provided, specifying a random seed makes results deterministic
+        steps=30, # defaults to 30 if not specified
     )
     for resp in answers:
         for artifact in resp.artifacts:
@@ -24,7 +27,8 @@ def generate_img(city, planet):
             if artifact.type == generation.ARTIFACT_IMAGE:
                 img = Image.open(io.BytesIO(artifact.binary))
                 img.save('output.png')
+                return img
 
 def manipulate_prompt(city, planet):
-    prompt = f"What would {city} look like on {planet}"
+    prompt = f"City on {planet} in the year 2050 with human habitats. Create realistic image with higher resolution of {city}"
     return prompt

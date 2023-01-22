@@ -6,7 +6,7 @@ class UserService{
             planet: planet
         }
         return axios.post(process.env.REACT_APP_BASE_URL, data).then(response => {
-            return response.data;
+            return response;
         })
     }
 }
