@@ -26,8 +26,8 @@ def generate_img(city, planet):
                     "Please modify the prompt and try again.")
             if artifact.type == generation.ARTIFACT_IMAGE:
                 img = Image.open(io.BytesIO(artifact.binary))
-                img.save('output.png')
-                return img
+                img.save('../frontend/src/components/output.jpeg')
+                return artifact.binary
 
 def manipulate_prompt(city, planet):
     prompt = f"City on {planet} in the year 2050 with human habitats. Create realistic image with higher resolution of {city}"

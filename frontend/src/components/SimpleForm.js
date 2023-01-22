@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import UserService from "../services/user.service";
 
-
 export default function SimpleForm() {
     const [image, setImage] = React.useState(null);
 
@@ -78,7 +77,10 @@ export default function SimpleForm() {
         </Button>
         
       </Box>
-      {image && <img src={image} alt="Response" />}
+      <div>
+      { image && <img src={require('./output.jpeg')} alt="Response"/>}
+      </div>
+     
     </Box>
     );
 }
