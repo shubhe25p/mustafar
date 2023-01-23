@@ -10,7 +10,7 @@ from random import randint
 def generate_img(city, planet):
 
     stability_api = client.StabilityInference(
-        key='sk-vSTOSKxpVYvN54rEO8fGo4XXHiflxdedpipngg9dL8sqGznq', 
+        key='***', 
         verbose=True,
     )
     answers = stability_api.generate(
@@ -30,5 +30,9 @@ def generate_img(city, planet):
                 return artifact.binary
 
 def manipulate_prompt(city, planet):
-    prompt = f"City on {planet} in the year 2050 with human habitats. Create realistic image with higher resolution of {city}"
+    prompt = f"City on {planet} in the year 2050 with human habitats. Create realistic image with higher resolution of {city}." + """best quality, ultra-detailed, masterpiece, beautiful lighting, intricate (high detail:1.2), dark intense shadows, dramatic lighting, (chromatic aberration:1.0),
+(extremely detailed CG unity 8k wallpaper), (best quality), (ultra-detailed)
+(best illustration)
+(best shadow)"""
     return prompt
+
